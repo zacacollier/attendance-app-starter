@@ -1,0 +1,23 @@
+{
+  "name": "attendance-app-starter",
+  "version": "1.0.0",
+  "description": "A starter app for the ACA full stack attendance project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canaandavis/attendance-app-starter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/canaandavis/attendance-app-starter/issues"
+  },
+  "homepage": "https://github.com/canaandavis/attendance-app-starter#readme",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
