@@ -19,5 +19,9 @@
   "homepage": "https://github.com/canaandavis/attendance-app-starter#readme",
   "devDependencies": {
     "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "pug": "^2.0.0-beta6"
   }
 }
