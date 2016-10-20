@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const ejs = require('ejs');
+const bodyParser = require('body-parser');
 
 //instantiate express
 const app = express();
@@ -14,10 +15,17 @@ const names = require('./routes/names');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//Implement middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+
 //Establish routes
 //"when the app receives '/names' as a path extension, refer it to the names route"
-app.use('/', index);
+//!!this ordering is crucial!
 app.use('/names', names);
+app.use('/*', function(res, req, next){
+  res.redirect('/names')
+});
+
 
 // app.get('/', (req, res) => {
 //   res.render('index',
