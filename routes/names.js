@@ -12,18 +12,27 @@ function inputScrub(str) {
 
 //apply input scrubbing to initial value of 'names'
 const namesScrubbed = names.map(function(name) {
-	return inputScrub(name)
+	return inputScrub(name);
 });
 
 router.get('/', function(req, res, next) {
-  res.render('names.ejs', { namesScrubbed })
+  res.render('names.ejs', { namesScrubbed, count: 1 });
 });
 
 //apply input scrubbing to incoming form input:
 router.post('/', function(req, res, next) {
   const name = inputScrub(req.body.name);
-  if (!namesScrubbed.includes(name)) {
-    namesScrubbed.push(name);
+  // this.count = 1;
+
+  for (const index of namesScrubbed) {
+    if (name === index) {
+      console.log(name, this.count)
+      this.count += 1;
+      console.log(name, this.count)
+    };
+    if (!namesScrubbed.includes(name)) {
+      namesScrubbed.push(name);
+    }
   }
 
   res.redirect('/names');
