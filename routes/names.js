@@ -1,37 +1,30 @@
 const express = require('express');
 const router = express.Router();
 
-const names = ['Cartman', 'Buzbee', 'Schopenhauer', 'fenster', 'ångStröm'];
+const names = ['cartman', 'sChopEnhAuer', 'FENSTER', 'ångStröm'];
 
-function inputScrubber(str) {
+function inputScrub(str) {
   return str.replace(/[^-\s]+/g, function(txt) {
     return txt.charAt(0).toUpperCase()
          + txt.substr(1).toLowerCase();
   });
 }
 
+//apply input scrubbing to initial value of 'names'
 const namesScrubbed = names.map(function(name) {
-	return inputScrubber(name)
+	return inputScrub(name)
 });
 
 router.get('/', function(req, res, next) {
   res.render('names.ejs', { namesScrubbed })
 });
 
+//apply input scrubbing to incoming form input:
 router.post('/', function(req, res, next) {
-  console.log(req.body);
-  function inputScrubber(str) {
-  	return str.replace(/[^-\s]+/g, function(txt) {
-  		return txt.charAt(0).toUpperCase()
-  			   + txt.substr(1).toLowerCase();
-  	});
+  const name = inputScrub(req.body.name);
+  if (!namesScrubbed.includes(name)) {
+    namesScrubbed.push(name);
   }
-  const name = inputScrubber(req.body.name);
-  namesScrubbed.push(name);
-  console.log(namesScrubbed.includes(name));
-  // if (names.includes(name))  {
-  //
-  // }
 
   res.redirect('/names');
 })
