@@ -1,7 +1,16 @@
 const express = require('express');
+const _ = require('lodash')
 const router = express.Router();
 
-const names = ['cartman', 'sChopEnhAuer', 'FENSTER', 'ångStröm'];
+// const names = ['cartman', 'sChopEnhAuer', 'FENSTER', 'ångStröm'];
+
+const names = {
+  'cartman': 1,
+  'Zac': 1,
+  'negligeé-miller': 1,
+  'FENSTER': 1,
+  'ångStröm': 1
+}
 
 function inputScrub(str) {
   return str.replace(/[^-\s]+/g, function(txt) {
@@ -11,29 +20,28 @@ function inputScrub(str) {
 }
 
 //apply input scrubbing to initial value of 'names'
-const namesScrubbed = names.map(function(name) {
+const namesArray = Object.keys(names);
+const scrubArray = namesArray.map(function(name) {
 	return inputScrub(name);
 });
+const scrubObject = scrubArray.reduce(function(object, value, i) {
+	object[i] = value;
+	return object;
+}, {});
 
+//GET routing
 router.get('/', function(req, res, next) {
-  res.render('names.ejs', { namesScrubbed, count: 1 });
+  res.render('names.ejs', { scrubArray, scrubObject });
 });
 
-//apply input scrubbing to incoming form input:
+//POST routing
 router.post('/', function(req, res, next) {
   const name = inputScrub(req.body.name);
-  // this.count = 1;
 
-  for (const index of namesScrubbed) {
-    if (name === index) {
-      console.log(name, this.count)
-      this.count += 1;
-      console.log(name, this.count)
-    };
-    if (!namesScrubbed.includes(name)) {
-      namesScrubbed.push(name);
-    }
+  if (scrubObject[name]) {
+    scrubObject[name]++
   }
+  else scrubObject[name] = 1;
 
   res.redirect('/names');
 })
