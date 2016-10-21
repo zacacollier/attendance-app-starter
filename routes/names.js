@@ -41,7 +41,9 @@ router.post('/', function(req, res, next) {
   if (scrubObject[name]) {
     scrubObject[name]++
   }
-  else scrubObject[name] = 1;
+  else {
+    scrubObject[name] = 1;
+  }
 
   res.redirect('/names');
 })
