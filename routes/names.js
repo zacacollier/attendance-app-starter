@@ -6,7 +6,6 @@ const router = express.Router();
 
 const names = {
   'cartman': 1,
-  'Zac': 1,
   'negligeé-miller': 1,
   'FENSTER': 1,
   'ångStröm': 1
@@ -38,6 +37,9 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   const name = inputScrub(req.body.name);
 
+  if (!scrubArray.includes(name)) {
+    scrubArray.push(name)
+  }
   if (scrubObject[name]) {
     scrubObject[name]++
   }
@@ -46,5 +48,6 @@ router.post('/', function(req, res, next) {
   }
 
   res.redirect('/names');
-})
+});
+
 module.exports = router;

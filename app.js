@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //"when the app receives '/names' as a path extension, refer it to the names route"
 //!!this ordering is crucial!
 app.use('/names', names);
-app.use('/*', function(res, req, next){
+app.use('/*', function(req, res, next){
   res.redirect('/names')
 });
 
@@ -33,5 +33,5 @@ app.use('/*', function(res, req, next){
 // )
 // })
 
-const port = 1337;
-app.listen(1337, console.log(`listening on port ${port}`));
+const port = 8080;
+app.listen(8080, console.log(`listening on port ${port}`));
