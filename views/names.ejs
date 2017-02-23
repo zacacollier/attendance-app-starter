@@ -3,29 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Check-In Time</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha256-rr9hHBQ43H7HSOmmNkxzQGazS/Khx+L8ZRHteEY1tQ4=" crossorigin="anonymous" />
 </head>
 <body>
-  <main class="container">
-    <div class="row">
-      <form class="form-inline text-center" method="POST" action="/names">
-        <input class="form-control" placeholder="Enter your name..." type="text" name="name">
-        <input class="btn btn-default" type="submit" value="Submit">
-      </form>
+  <main class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form class="input-group input-group-lg"  method="POST" action="/names">
+          <input class="form-control" placeholder="Enter your name..." type="text" name="name">
+          <span class="input-group-btn">
+            <input class="btn btn-default" type="submit" aria-label="check in" value="Submit">
+          </span>
+        </form>
+      </div>
     </div>
-    <div class="row">
-      <ul class="col-xs-6 col-xs-push-3 text-center list-group">
-        <% scrubArray.forEach(function(name) { %>
-          <li class="list-group-item">
-            <%= name %>
-            <span class="tag tag-default tag-pill float-xs-right"><%= scrubObject[name] %></span>
-          </li>
-        <% }) %>
-      </ul>
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <ul class="col-md-offset-4 text-center list-group">
+          <% scrubArray.forEach(function(name) { %>
+            <li class="list-group-item">
+              <%= name %>
+              <span class="tag tag-default tag-pill float-md-right"><%= scrubObject[name] %></span>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
     </div>
   </main>
-</body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.js" integrity="sha256-O80B9+k8kADyLffStFEQZnTxAU91ZryGbUeKwxO0t3M=" crossorigin="anonymous"></script>
+</body>
 
 </html>
